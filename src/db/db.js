@@ -1,4 +1,10 @@
-import { sequelize } from "sequelize";
+import { Sequelize } from "sequelize";
 
+const sequelize = new Sequelize(
+  "postgres://postgres:1015@localhost:5432/carshowroom",
+  {
+    dialect: "postgres",
+  }
+);
 
-const sequelize = new Sequelize("postgres://poastgres:1015@lacalhost:5432/carshowroom");
+export default sequelize;

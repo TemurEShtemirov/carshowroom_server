@@ -1,22 +1,29 @@
-import express from 'express'
+import express from "express";
+import sequelize from "./db/db.js";
+import carRouter from "./router/car.router.js";
+import cors from "cors";
 
-async function bootstrap(){
-    const app = express()
-const port = 8585;
+async function bootstrap() {
+  const app = express();
+  const port = 8585;
 
+  app.use(carRouter);
+  app.use(express.json());
+  app.use(cors());
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+
+  app.listen(port, () => {
     try {
-      await sequelize.authenticate();
-      console.log("Connection has been established successfully.");
+      console.log(`Server is running on port :${port}`);
     } catch (error) {
-      console.error("Unable to connect to the database:", error);
+      console.log(`SERVER ERROR: ${error}`);
     }
-
-app.listen(port,()=>{
-    try {
-        console.log(`Server is running on port :${port}`);
-    } catch (error) {
-        
-    }
-})
-
+  });
 }
+
+bootstrap();
