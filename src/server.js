@@ -1,6 +1,6 @@
 import express from "express";
 import sequelize from "./db/db.js";
-import carRouter from "./router/car.router.js";
+import carRouter from "./Admin/router/car.router.js";
 import cors from "cors";
 
 async function bootstrap() {

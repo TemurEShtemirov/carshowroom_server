@@ -1,7 +1,19 @@
+import { Model } from "sequelize";
+
 export const Car = (sequelize, DataTypes) => {
-  const Car = sequelize.define(
-    "Car",
+  class Car extends Model {
+    static associate(models) {
+      // Define associations here if needed
+    }
+  }
+
+  Car.init(
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -18,7 +30,7 @@ export const Car = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       price: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.FLOAT,
       },
       image: {
         type: DataTypes.STRING,
@@ -33,12 +45,13 @@ export const Car = (sequelize, DataTypes) => {
       },
     },
     {
-      timestamps: false, 
+      sequelize,
+      modelName: "Car",
+      timestamps: true,
       underscored: true,
-      tableName: "cars", 
+      tableName: "cars",
     }
   );
 
   return Car;
 };
-
