@@ -1,4 +1,4 @@
-import Car from "../model/car.model.js";
+import { Car } from "../model/car.model.js";
 import multer from "multer";
 
 const storage = multer.diskStorage({
@@ -16,7 +16,7 @@ const upload = multer({ storage: storage }).single("images");
 export async function GetAllCars(req, res) {
   try {
     const cars = await Car.find();
-    res.status(200).json(cars);
+    res.status(200).json({ data: cars });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

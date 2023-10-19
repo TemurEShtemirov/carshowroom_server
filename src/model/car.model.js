@@ -1,4 +1,4 @@
-const Car = (sequelize, DataTypes) => {
+export const Car = (sequelize, DataTypes) => {
   const Car = sequelize.define(
     "Car",
     {
@@ -42,4 +42,3 @@ const Car = (sequelize, DataTypes) => {
   return Car;
 };
 
-export default Car;
